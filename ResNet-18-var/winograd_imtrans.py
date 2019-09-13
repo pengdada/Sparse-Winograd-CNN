@@ -15,4 +15,3 @@ __all__ = ['WinogradImTrans']
 @layer_register()
 def WinogradImTrans(x, nl=tf.identity):
     return nl(winograd2x2_imTrans.winograd2x2_imTrans.winograd2x2_imTrans(x))
-

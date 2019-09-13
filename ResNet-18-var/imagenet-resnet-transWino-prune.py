@@ -19,7 +19,6 @@ from tensorpack.tfutils.symbolic_functions import *
 from tensorpack.tfutils.summary import *
 from tensorpack.utils.gpu import get_nr_gpu
 
-
 TOTAL_BATCH_SIZE = 64
 INPUT_SHAPE = 224
 DEPTH = None
@@ -108,7 +107,7 @@ class Model(ModelDesc):
 
         with argscope(Conv2D, nl=tf.identity, use_bias=False,
                       W_init=variance_scaling_initializer(mode='FAN_OUT')), \
-                argscope([Conv2D, MaxPooling, GlobalAvgPooling, BatchNorm], data_format=self.data_format):
+             argscope([Conv2D, MaxPooling, GlobalAvgPooling, BatchNorm], data_format=self.data_format):
 
             l = Conv2D('conv1', image, 64, 7, stride=2, nl=tf.identity)
             # l = BatchNorm('conv1_bn', l)
@@ -249,6 +248,7 @@ def get_data(train_or_test):
             crop 8%~100% of the original image
             See `Going Deeper with Convolutions` by Google.
             """
+
             def _augment(self, img, _):
                 h, w = img.shape[:2]
                 area = h * w
@@ -386,7 +386,8 @@ if __name__ == '__main__':
         config.session_init = SaverRestore(args.load)
     if use_mask:
         mask_dict = pickle.load(open(mask_file_dir, 'rb'))
-        print 'loading mask file: ', mask_file_dir
-    #config.nr_tower = NR_GPU
+        print
+        'loading mask file: ', mask_file_dir
+    # config.nr_tower = NR_GPU
     trainer = SyncMultiGPUTrainerParameterServer(NR_GPU, ps_device='gpu')
     launch_train_with_config(config, trainer)

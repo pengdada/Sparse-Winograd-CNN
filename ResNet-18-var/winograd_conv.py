@@ -14,7 +14,6 @@ __all__ = ['WinogradConv']
 
 @layer_register()
 def WinogradConv(x, in_channel, out_channel, mask=None, W_init=None):
-
     if W_init is None:
         W_init = tf.contrib.layers.variance_scaling_initializer(factor=2.0 * 9.0 / 32.0)
 
@@ -26,4 +25,3 @@ def WinogradConv(x, in_channel, out_channel, mask=None, W_init=None):
     ######
 
     return winograd2x2_conv.winograd2x2_conv.winograd2x2_conv(x, W)
-
