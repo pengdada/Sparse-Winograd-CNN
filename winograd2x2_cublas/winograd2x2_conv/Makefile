@@ -1,8 +1,9 @@
+HOME=$(shell echo ~)
 TF_INC=/usr/local/lib/python3.6/dist-packages/tensorflow/include
-LD_LIBRARY_PATH=/usr/local/cuda/lib64
+LD_LIBRARY_PATH=$(HOME)/local/cuda-10.0/lib64
 TF_LIB=/usr/local/lib/python3.6/dist-packages/tensorflow
 
-CU_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib
+CU_LIBRARY_PATH=$(HOME)/local/cuda-10.0/targets/x86_64-linux/lib
 
 
 
