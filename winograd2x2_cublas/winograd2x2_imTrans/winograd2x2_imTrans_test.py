@@ -191,8 +191,7 @@ my_conv_result = winograd_conv(image_holder_1, transformed_kernel_holder, transf
 with tf.Session() as sess_1:
     conv_result_num = sess_1.run(conv_result, {image_holder_1: image, kernel_holder: kernel})
     my_conv_result_num = sess_1.run(my_conv_result, {image_holder_1: image, transformed_kernel_holder: transformed_kernel_num})
-    print
-    np.sum(np.abs(conv_result_num - my_conv_result_num)) / (np.sum(np.abs(conv_result_num)) + (np.sum(np.abs(my_conv_result_num))))
+    print(np.sum(np.abs(conv_result_num - my_conv_result_num)) / (np.sum(np.abs(conv_result_num)) + (np.sum(np.abs(my_conv_result_num)))))
 
 # ----------------------ensure the conv is correct------------------
 
@@ -209,5 +208,4 @@ with tf.Session(config=tf.ConfigProto()) as sess_3:
     sess_3.run(tf.initialize_all_variables())
     my_image_transform_result_num = sess_3.run(my_image_transform_result, {image_tf: image})
 
-print
-np.sum(np.abs(transformed_image_num - my_image_transform_result_num)) / (np.sum(np.abs(transformed_image_num)) + (np.sum(np.abs(my_image_transform_result_num))))
+print(np.sum(np.abs(transformed_image_num - my_image_transform_result_num)) / (np.sum(np.abs(transformed_image_num)) + (np.sum(np.abs(my_image_transform_result_num)))))
