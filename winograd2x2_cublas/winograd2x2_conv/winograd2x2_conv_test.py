@@ -30,8 +30,8 @@ def image_transform(image, nl=tf.identity):
     image_width = image_width_d.value
     image_height = image_height_d.value
     input_channel = input_channel_d.value
-    n_patch_width = (image_width + 1 + 2 - 4) / 2 + 1
-    n_patch_height = (image_height + 1 + 2 - 4) / 2 + 1
+    n_patch_width = int((image_width + 1 + 2 - 4) / 2) + 1
+    n_patch_height = int((image_height + 1 + 2 - 4) / 2) + 1
     if batch_size == None:
         batch_size = -1
 
@@ -162,7 +162,7 @@ batch_size = 3
 input_channel = 32
 output_channel = 32
 image_width = 6
-n_image_width = (image_width + 1) / 2
+n_image_width = int((image_width + 1) / 2)
 
 image = np.random.randn(batch_size, image_width, image_width, input_channel)
 # image = np.ones([batch_size, image_width, image_width, input_channel])
