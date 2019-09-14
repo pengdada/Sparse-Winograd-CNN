@@ -1,7 +1,12 @@
 HOME=$(shell echo ~)
-TF_INC=/usr/local/lib/python3.6/dist-packages/tensorflow/include
+#TF=/home/pengdadi/venv/lib/python3.5/site-packages/tensorflow
+TF=$(shell python -c 'import tensorflow as tf; print(tf.__path__[1])')
+
+#TF_INC=/usr/local/lib/python3.6/dist-packages/tensorflow/include
+TF_INC=$(TF)/include
 LD_LIBRARY_PATH=$(HOME)/local/cuda-10.0/lib64
-TF_LIB=/usr/local/lib/python3.6/dist-packages/tensorflow
+#TF_LIB=/usr/local/lib/python3.6/dist-packages/tensorflow
+TF_LIB=$(TF)
 
 CU_LIBRARY_PATH=$(HOME)/local/cuda-10.0/targets/x86_64-linux/lib
 
